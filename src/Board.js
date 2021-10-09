@@ -107,4 +107,4 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
 export default Board;
 
-// its not rerendering even if saveState is changing every time flipCellsAround is called by onClick.
+// i fixed the rerendering issue but I still don't know if I really understand it
