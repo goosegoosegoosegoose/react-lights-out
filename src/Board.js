@@ -29,11 +29,12 @@ import "./Board.css";
 
 function Board({ nrows, ncols, chanceLightStartsOn }) {
   const [board, setBoard] = useState(createBoard());
+  
 
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
   function createBoard() {
-    let emptyBoard = [...Array(nrows)].map(e => Array(ncols).fill(""));
     const randomBool = () => Math.random() < chanceLightStartsOn ? true : false;
+    const emptyBoard = [...Array(nrows)].map(e => Array(ncols).fill(""));
     let initialBoard = emptyBoard.map(row => row.map(cell => randomBool()));
     return initialBoard;
   }
@@ -70,11 +71,13 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
       if (y < nrows) flipCell(y+1, x, copy);
       if (x > 0) flipCell(y, x-1, copy);
       if (x < ncols) flipCell(y, x+1, copy);
+
+      const emptyBoard = [...Array(nrows)].map(e => Array(ncols).fill(""));
       
       // TODO: return the copy
-      return copy;
+      return emptyBoard.map((row, y)=> row.map((cell, x) => copy[y][x]));
     });
-    console.log(board)
+
   }
 
   // if the game is won, just show a winning msg & render nothing else
